@@ -24,7 +24,15 @@ class CustomRegistrationSerializer(serializers.ModelSerializer):
     
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
-            raise serializers.ValidationError({"password": "Password fields didn't match."})
+            raise serializers.ValidationError({
+                "password": ["Password fields didn't match."]
+            })
+        
+        email = attrs.get('email')
+        if User.objects.filter(email=email).exists():
+            raise serializers.ValidationError({
+                "email": ["User with this email already exists."]
+            })
         
         attrs.pop('password2', None)
         return attrs
@@ -39,7 +47,6 @@ class CustomRegistrationSerializer(serializers.ModelSerializer):
             role= 'user'
         )
         return user
-
 
 class CustomLoginSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)

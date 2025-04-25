@@ -40,10 +40,14 @@ class SaleSerializer(serializers.ModelSerializer):
         quantity_sold = data['quantity_sold']
 
         if quantity_sold <= 0:
-            raise serializers.ValidationError("Quantity sold must be greater than zero.")
+            raise serializers.ValidationError({
+                "quantity_sold": ["Quantity sold must be greater than zero."]
+            })
 
         if quantity_sold > product.quantity:
-            raise serializers.ValidationError(f"Cannot sell {quantity_sold} units of {product.name}. Only {product.quantity} available in stock.")
+            raise serializers.ValidationError({
+                "quantity_sold": [f"Cannot sell {quantity_sold} units of {product.name}. Only {product.quantity} available in stock."]
+            })
 
         return data
 

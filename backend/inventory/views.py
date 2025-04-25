@@ -16,10 +16,33 @@ class CategoryListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     
     def get_permissions(self):
-
         if self.request.method != 'GET':
             return [IsAdminUser()]
         return [permissions.IsAuthenticated()]
+    
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+        return Response({
+            'success': True,
+            'message': 'Categories retrieved successfully',
+            'data': response.data,
+            'count': len(response.data)
+        })
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            self.perform_create(serializer)
+            return Response({
+                'success': True,
+                'message': 'Category created successfully',
+                'data': serializer.data
+            }, status=status.HTTP_201_CREATED)
+        return Response({
+            'success': False,
+            'message': 'Failed to create category',
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
 
 class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
@@ -27,10 +50,43 @@ class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
     
     def get_permissions(self):
-
         if self.request.method != 'GET':
             return [IsAdminUser()]
         return [permissions.IsAuthenticated()]
+    
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response({
+            'success': True,
+            'message': 'Category retrieved successfully',
+            'data': serializer.data
+        })
+    
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        if serializer.is_valid():
+            self.perform_update(serializer)
+            return Response({
+                'success': True,
+                'message': 'Category updated successfully',
+                'data': serializer.data
+            })
+        return Response({
+            'success': False,
+            'message': 'Failed to update category',
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({
+            'success': True,
+            'message': 'Category deleted successfully'
+        }, status=status.HTTP_200_OK)
 
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -44,6 +100,42 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
         if self.request.method != 'GET':
             return [IsAdminUser()]
         return [permissions.IsAuthenticated()]
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            response = self.get_paginated_response(serializer.data)
+            return Response({
+                'success': True,
+                'message': 'Products retrieved successfully',
+                'data': response.data
+            })
+        
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({
+            'success': True,
+            'message': 'Products retrieved successfully',
+            'data': serializer.data,
+            'count': len(serializer.data)
+        })
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            self.perform_create(serializer)
+            return Response({
+                'success': True,
+                'message': 'Product created successfully',
+                'data': serializer.data
+            }, status=status.HTTP_201_CREATED)
+        return Response({
+            'success': False,
+            'message': 'Failed to create product',
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
 
 class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
@@ -54,6 +146,40 @@ class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
         if self.request.method != 'GET':
             return [IsAdminUser()]
         return [permissions.IsAuthenticated()]
+    
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response({
+            'success': True,
+            'message': 'Product retrieved successfully',
+            'data': serializer.data
+        })
+    
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        if serializer.is_valid():
+            self.perform_update(serializer)
+            return Response({
+                'success': True,
+                'message': 'Product updated successfully',
+                'data': serializer.data
+            })
+        return Response({
+            'success': False,
+            'message': 'Failed to update product',
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({
+            'success': True,
+            'message': 'Product deleted successfully'
+        }, status=status.HTTP_200_OK)
 
 class LowStockProductsAPIView(generics.ListAPIView):
     serializer_class = ProductSerializer
@@ -62,6 +188,16 @@ class LowStockProductsAPIView(generics.ListAPIView):
     def get_queryset(self):
         from django.db.models import F
         return Product.objects.filter(quantity__lte=F('stock_threshold'))
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({
+            'success': True,
+            'message': 'Low stock products retrieved successfully',
+            'data': serializer.data,
+            'count': len(serializer.data)
+        })
 
 class SaleListCreateAPIView(generics.ListCreateAPIView):
     queryset = Sale.objects.all()
@@ -77,6 +213,42 @@ class SaleListCreateAPIView(generics.ListCreateAPIView):
         product = sale.product
         product.quantity -= sale.quantity_sold
         product.save()
+    
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            response = self.get_paginated_response(serializer.data)
+            return Response({
+                'success': True,
+                'message': 'Sales retrieved successfully',
+                'data': response.data
+            })
+        
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({
+            'success': True,
+            'message': 'Sales retrieved successfully',
+            'data': serializer.data,
+            'count': len(serializer.data)
+        })
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            self.perform_create(serializer)
+            return Response({
+                'success': True,
+                'message': 'Sale recorded successfully',
+                'data': serializer.data
+            }, status=status.HTTP_201_CREATED)
+        return Response({
+            'success': False,
+            'message': 'Failed to record sale',
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
 
 class SaleDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Sale.objects.all()
@@ -100,3 +272,37 @@ class SaleDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
         product.save()
         
         instance.delete()
+    
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response({
+            'success': True,
+            'message': 'Sale retrieved successfully',
+            'data': serializer.data
+        })
+    
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        if serializer.is_valid():
+            self.perform_update(serializer)
+            return Response({
+                'success': True,
+                'message': 'Sale updated successfully',
+                'data': serializer.data
+            })
+        return Response({
+            'success': False,
+            'message': 'Failed to update sale',
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({
+            'success': True,
+            'message': 'Sale deleted successfully'
+        }, status=status.HTTP_200_OK)
