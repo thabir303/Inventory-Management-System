@@ -1,0 +1,212 @@
+### USER registration
+POST http://localhost:8000/api/user/auth/register/
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "username": "testuser",
+  "password": "StrongPassword123!",
+  "password2": "StrongPassword123!",
+  "first_name": "admin",
+  "last_name": "User",
+  "role": "admin"
+}
+
+### Admin registration
+POST http://localhost:8000/api/user/auth/admin/register/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTg1NzkyLCJpYXQiOjE3NDU1ODIxOTIsImp0aSI6ImUzZGQwZWJlODBmMjQ1OWFhODA4MmI5N2IzMWRmM2UyIiwidXNlcl9pZCI6M30.-9c1sUO0zfeDrK22voms67J4V1_UnR6PYtFHxuzJI4Q
+
+{
+  "email": "admin2@example.com",
+  "username": "testuser",
+  "password": "StrongPassword123!",
+  "password2": "StrongPassword123!",
+  "first_name": "admin",
+  "last_name": "User",
+  "role": "admin"
+}
+
+### Login
+POST http://localhost:8000/api/user/auth/login/
+Content-Type: application/json
+
+{
+  "email": "bsse1321@iit.du.ac.bd",
+  "password": "Abir123@@"
+}
+
+### Login
+POST http://localhost:8000/api/user/auth/token/refresh/
+Content-Type: application/json
+
+{
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0Njc4NjAzMCwiaWF0IjoxNzQ1NTc2NDMwLCJqdGkiOiJhYzcyMjc1NDRmYTY0NmY4ODgxOTY3OTMzZWVhMDMyNSIsInVzZXJfaWQiOjF9.X15JsEbMb_rG4q9B1QIogCdk9M7NoOgVAeaM3arXcio"
+}
+### Get Current User Profile
+GET http://localhost:8000/api/user/profile/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwMzMwLCJpYXQiOjE3NDU1NzY3MzAsImp0aSI6ImQ4N2FiNjgzM2NlZDRkZTdhODNlZGViNDdlYTVmNWQ3IiwidXNlcl9pZCI6MX0.1V1KD21iW7JHXpYI-WyuTuNh6jZOEoOihIFrCmIfils
+
+### Update Current User Profile
+PUT http://localhost:8000/api/user/profile/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwMzMwLCJpYXQiOjE3NDU1NzY3MzAsImp0aSI6ImQ4N2FiNjgzM2NlZDRkZTdhODNlZGViNDdlYTVmNWQ3IiwidXNlcl9pZCI6MX0.1V1KD21iW7JHXpYI-WyuTuNh6jZOEoOihIFrCmIfils
+
+{
+  "username": "updated_username",
+  "first_name": "Updated",
+  "last_name": "Name",
+  "bio": "This is my updated bio"
+}
+
+
+### Update Current User Profile
+PUT http://localhost:8000/api/user/profile/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwMzMwLCJpYXQiOjE3NDU1NzY3MzAsImp0aSI6ImQ4N2FiNjgzM2NlZDRkZTdhODNlZGViNDdlYTVmNWQ3IiwidXNlcl9pZCI6MX0.1V1KD21iW7JHXpYI-WyuTuNh6jZOEoOihIFrCmIfils
+
+{
+  "username": "updated_username",
+  "first_name": "Updated",
+  "last_name": "Name",
+  "bio": "This is my updated bio"
+}
+
+### List All Users
+GET http://localhost:8000/api/user/users/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+### Get User Details
+GET http://localhost:8000/api/user/users/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+### Update User Details
+PUT http://localhost:8000/api/user/users/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+{
+  "username": "updated_username",
+  "first_name": "Updated",
+  "last_name": "Name",
+  "bio": "This is my updated bio"
+}
+
+### Delete User
+DELETE http://localhost:8000/api/user/users/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+### List All Categories
+GET http://localhost:8000/api/inventory/categories/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+
+### Create New Category (Admin Only)
+POST http://localhost:8000/api/inventory/categories/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+{
+  "name": "PC2",
+  "description": "Electronic devices and accessories"
+}
+
+### Get Category Details
+GET http://localhost:8000/api/inventory/categories/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+
+### Update Category (Admin Only)
+PUT http://localhost:8000/api/inventory/categories/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+{
+  "name": "Updated Electronics",
+  "description": "Updated description for electronic items"
+}
+
+### Update Category (Admin Only)
+DELETE http://localhost:8000/api/inventory/categories/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+
+### List All Products
+GET http://localhost:8000/api/inventory/products/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+### Create New Product (Admin Only)
+POST http://localhost:8000/api/inventory/products/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+{
+  "name": "Smartphone",
+  "category": 2,
+  "price": 499.99,
+  "quantity": 50,
+  "description": "Latest smartphone model",
+  "stock_threshold": 10,
+  "sku": "PHONE-001",
+  "is_active": true
+}
+
+
+### Filter Products
+GET http://localhost:8000/api/inventory/products/?min_price=100&max_price=500&category=2&low_stock=true&search=smartphone
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+### Get Product Details
+GET http://localhost:8000/api/inventory/products/1/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+### Update Product (Admin Only)
+PUT http://localhost:8000/api/inventory/products/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+{
+  "name": "Updated Smartphone",
+  "price": 449.99,
+  "quantity": 45,
+  "category": 2,
+  "description": "Updated smartphone description"
+}
+
+### Get Product Details
+GET http://localhost:8000/api/inventory/products/low-stock/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+
+### List All Sales (Admin Only)
+GET http://localhost:8000/api/inventory/sales/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+
+### Create New Sale (Admin Only)
+POST http://localhost:8000/api/inventory/sales/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+{
+  "product": 1,
+  "quantity_sold": 5
+}
+
+### Create New Sale (Admin Only)
+PUT http://localhost:8000/api/inventory/sales/1/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+
+{
+  "product": 1,
+  "quantity_sold": 3
+}
