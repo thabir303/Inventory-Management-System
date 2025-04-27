@@ -3,7 +3,7 @@ POST http://localhost:8000/api/user/auth/register/
 Content-Type: application/json
 
 {
-  "email": "admin@example.com",
+  "email": "admin123@example.com",
   "username": "testuser",
   "password": "StrongPassword123!",
   "password2": "StrongPassword123!",
@@ -15,13 +15,13 @@ Content-Type: application/json
 ### Admin registration
 POST http://localhost:8000/api/user/auth/admin/register/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTg1NzkyLCJpYXQiOjE3NDU1ODIxOTIsImp0aSI6ImUzZGQwZWJlODBmMjQ1OWFhODA4MmI5N2IzMWRmM2UyIiwidXNlcl9pZCI6M30.-9c1sUO0zfeDrK22voms67J4V1_UnR6PYtFHxuzJI4Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1Nzc2Mjk3LCJpYXQiOjE3NDU3NzI2OTcsImp0aSI6ImIwMjlhYzZiYzg2ODRjZjc4NTJiZTBlZTdiYzY2MzE0IiwidXNlcl9pZCI6N30.ahz3_6MAAlpk97rgDyfM6NkUTG-9C0PtRyR5DlQ1Ks4
 
 {
-  "email": "admin2@example.com",
+  "email": "admin@gmail.com",
   "username": "testuser",
-  "password": "StrongPassword123!",
-  "password2": "StrongPassword123!",
+  "password": "admin@gmail.com",
+  "password2": "admin@gmail.com",
   "first_name": "admin",
   "last_name": "User",
   "role": "admin"
@@ -32,7 +32,7 @@ POST http://localhost:8000/api/user/auth/login/
 Content-Type: application/json
 
 {
-  "email": "bsse1321@iit.du.ac.bd",
+  "email": "tanvirhasanabir8@gmail.com",
   "password": "Abir123@@"
 }
 
@@ -41,20 +41,21 @@ POST http://localhost:8000/api/user/auth/token/refresh/
 Content-Type: application/json
 
 {
-  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0Njc4NjAzMCwiaWF0IjoxNzQ1NTc2NDMwLCJqdGkiOiJhYzcyMjc1NDRmYTY0NmY4ODgxOTY3OTMzZWVhMDMyNSIsInVzZXJfaWQiOjF9.X15JsEbMb_rG4q9B1QIogCdk9M7NoOgVAeaM3arXcio"
+
+  "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0Njc5Nzc1MSwiaWF0IjoxNzQ1NTg4MTUxLCJqdGkiOiI5Nzg0ODIwZmQ0ZTE0N2ZkYTFlNzIyYzdhZDAzNjIyMCIsInVzZXJfaWQiOjN9.7tZmMAxSwVrHxnlmF9HfRLlkKD5gdM3cIwaeUqVNNKo"
+
 }
 ### Get Current User Profile
 GET http://localhost:8000/api/user/profile/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwMzMwLCJpYXQiOjE3NDU1NzY3MzAsImp0aSI6ImQ4N2FiNjgzM2NlZDRkZTdhODNlZGViNDdlYTVmNWQ3IiwidXNlcl9pZCI6MX0.1V1KD21iW7JHXpYI-WyuTuNh6jZOEoOihIFrCmIfils
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTkxODAyLCJpYXQiOjE3NDU1ODgyMDIsImp0aSI6ImM2ODVjYTA2NGJkMjQwNDdhMDJjMDcxMDIzZmVlOGIwIiwidXNlcl9pZCI6M30.3qtY7lY82LameFZQiyfOJoKCGhtLbrgUwDTQSHXT_1k
 ### Update Current User Profile
 PUT http://localhost:8000/api/user/profile/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwMzMwLCJpYXQiOjE3NDU1NzY3MzAsImp0aSI6ImQ4N2FiNjgzM2NlZDRkZTdhODNlZGViNDdlYTVmNWQ3IiwidXNlcl9pZCI6MX0.1V1KD21iW7JHXpYI-WyuTuNh6jZOEoOihIFrCmIfils
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTkxODAyLCJpYXQiOjE3NDU1ODgyMDIsImp0aSI6ImM2ODVjYTA2NGJkMjQwNDdhMDJjMDcxMDIzZmVlOGIwIiwidXNlcl9pZCI6M30.3qtY7lY82LameFZQiyfOJoKCGhtLbrgUwDTQSHXT_1k
 
 {
-  "username": "updated_username",
+  "username": "Tanvir Abir",
   "first_name": "Updated",
   "last_name": "Name",
   "bio": "This is my updated bio"
@@ -76,12 +77,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ### List All Users
 GET http://localhost:8000/api/user/users/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTkxODAyLCJpYXQiOjE3NDU1ODgyMDIsImp0aSI6ImM2ODVjYTA2NGJkMjQwNDdhMDJjMDcxMDIzZmVlOGIwIiwidXNlcl9pZCI6M30.3qtY7lY82LameFZQiyfOJoKCGhtLbrgUwDTQSHXT_1k
 ### Get User Details
 GET http://localhost:8000/api/user/users/1/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTkxODAyLCJpYXQiOjE3NDU1ODgyMDIsImp0aSI6ImM2ODVjYTA2NGJkMjQwNDdhMDJjMDcxMDIzZmVlOGIwIiwidXNlcl9pZCI6M30.3qtY7lY82LameFZQiyfOJoKCGhtLbrgUwDTQSHXT_1k
 
 ### Update User Details
 PUT http://localhost:8000/api/user/users/1/
@@ -103,16 +103,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ### List All Categories
 GET http://localhost:8000/api/inventory/categories/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTkxODAyLCJpYXQiOjE3NDU1ODgyMDIsImp0aSI6ImM2ODVjYTA2NGJkMjQwNDdhMDJjMDcxMDIzZmVlOGIwIiwidXNlcl9pZCI6M30.3qtY7lY82LameFZQiyfOJoKCGhtLbrgUwDTQSHXT_1k
 
 
 ### Create New Category (Admin Only)
 POST http://localhost:8000/api/inventory/categories/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTgwNzAzLCJpYXQiOjE3NDU1NzcxMDMsImp0aSI6ImRmMzk5YTQxNWFmMjRkYWVhNjNjOWE1NDBmNTY0OWE0IiwidXNlcl9pZCI6Mn0.fgI2T2XwWBVRcaH8z5WwK-U-xM7tZE2n7ZgIl4fV-PM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ1NTkxOTQ1LCJpYXQiOjE3NDU1ODgzNDUsImp0aSI6ImIxYjJmNWEwODZmOTQxMmU5N2MzN2IxY2Y3NDFiOTFiIiwidXNlcl9pZCI6M30.YYBoWjcPXO5SRdUWhHp05JiaH1tC4Nq0UHMokzslxWY
 
 {
-  "name": "PC2",
+  "name": "Laptop",
   "description": "Electronic devices and accessories"
 }
 

@@ -51,10 +51,10 @@ class AdminRegisterAPIView(APIView):
     
     def post(self, request):
 
-        if not request.user.is_superuser:
+        if not request.user.is_admin():
             return Response({
                     'success': False,
-                    "detail": "Only superusers can create admin accounts."}, 
+                    "detail": "Only administrators can create admin accounts."}, 
                 status=status.HTTP_403_FORBIDDEN
             )
             
@@ -63,6 +63,7 @@ class AdminRegisterAPIView(APIView):
             user = serializer.save()
             
             user.role = 'admin'
+            user.is_staff = True 
             user.save()
             
             refresh = RefreshToken.for_user(user)
